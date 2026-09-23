@@ -1,0 +1,282 @@
+/* ================================
+   MICHAEL JUSTICE
+   GAME DESIGN PORTFOLIO
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #071116;
+    color: #f4f7f8;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* NAVIGATION */
+
+nav {
+    width: 100%;
+    padding: 22px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #183039;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #b8c4c8;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #29d3c2;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 62vh;
+    padding: 90px 8% 70px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.eyebrow {
+    color: #29d3c2;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    margin-bottom: 20px;
+}
+
+.hero h2 {
+    color: #29d3c2;
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+    margin-bottom: 22px;
+}
+
+.hero p {
+    max-width: 650px;
+    color: #aebbc0;
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+}
+
+/* BUTTONS */
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.button {
+    display: inline-block;
+    padding: 13px 22px;
+    border: 1px solid #29d3c2;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.button-primary {
+    background: #29d3c2;
+    color: #071116;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button-secondary:hover {
+    background: #29d3c2;
+    color: #071116;
+}
+
+/* GENERAL SECTIONS */
+
+section {
+    padding: 80px 8%;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.section-line {
+    width: 55px;
+    height: 3px;
+    background: #29d3c2;
+    margin-bottom: 40px;
+}
+
+/* PROJECTS */
+
+.projects {
+    background: #0a171d;
+}
+
+.project-featured,
+.project-card {
+    background: #0d1d24;
+    border: 1px solid #183039;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.project-image {
+    min-height: 260px;
+    background: #142830;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #657a82;
+    font-weight: bold;
+}
+
+.project-info {
+    padding: 25px;
+}
+
+.project-info h3 {
+    font-size: 1.7rem;
+    margin-bottom: 5px;
+}
+
+.project-type {
+    color: #29d3c2;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.project-description {
+    color: #aebbc0;
+    margin-bottom: 20px;
+}
+
+.project-link {
+    color: #29d3c2;
+    font-weight: bold;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 25px;
+}
+
+/* ABOUT */
+
+.about-content {
+    max-width: 800px;
+}
+
+.about-content p {
+    color: #aebbc0;
+    margin-bottom: 18px;
+}
+
+/* SKILLS */
+
+.skills {
+    background: #0a171d;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.skill {
+    background: #10242c;
+    border: 1px solid #1e3b45;
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+
+/* CONTACT */
+
+.contact {
+    text-align: center;
+}
+
+.contact p {
+    color: #aebbc0;
+    margin: 15px auto 30px;
+    max-width: 600px;
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid #183039;
+    padding: 25px 8%;
+    color: #72858c;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    nav {
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        gap: 15px;
+        font-size: 0.8rem;
+    }
+
+    .hero {
+        min-height: auto;
+        padding-top: 70px;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 60px 6%;
+    }
+}
