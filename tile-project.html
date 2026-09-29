@@ -32,7 +32,7 @@
     <p>This project began with a course-provided tile-based framework that included the core TileMap, player and entity systems, interactable objects, and several basic tile types.</p>
     <p>Rather than rebuilding the existing framework, I focused on learning how its systems communicated and extending it with additional mechanics. My goal was to create reusable gameplay systems that could interact with both the player and other entities while fitting into the architecture already in place.</p>
     <div class="case-callout"><p><strong>Role:</strong> Gameplay / Technical Designer &nbsp; • &nbsp; <strong>Focus:</strong> Gameplay systems, interaction logic, editor tooling, testing, and debugging.</p></div>
-    <div class="media-placeholder">HERO GAMEPLAY VIDEO / FINISHED PUZZLE SCREENSHOT</div>
+    <figure class="case-media case-media-wide"><img src="../media/tile-project/hero-gameplay.png" alt="Playable tile-based puzzle level showing the player, crates, walls, goal tile, and message tile"><figcaption>Playable puzzle level built using the tile framework and extended gameplay systems.</figcaption></figure>
 </section>
 <section class="case-section">
     <p class="eyebrow">SYSTEM 01</p><h2>FORCE TILE SYSTEM</h2><div class="section-line"></div>
@@ -40,7 +40,7 @@
     <h3>Problem</h3><p>A single forced movement was straightforward, but consecutive Force Tiles needed to continue moving an entity automatically without requiring every sequence to be scripted individually.</p>
     <h3>Implementation</h3><p>I created a reusable Force Move Entity event that determines the neighboring tile based on the Force Tile's direction and moves the entity to that tile. After movement completes, the system checks the entity's current tile. If it is another Force Tile, the next tile triggers the same movement logic again. Player input is disabled during forced movement and restored after reaching a normal tile.</p>
     <h3>Result</h3><p>Designers can create short pushes or longer automated movement paths simply by arranging Force Tiles in the level.</p>
-    <div class="case-grid"><div class="media-placeholder">FORCE TILE GAMEPLAY CLIP</div><div class="media-placeholder">FORCE TILE BLUEPRINT SCREENSHOT</div></div>
+    <div class="case-grid"><figure class="case-media"><video controls muted playsinline preload="metadata"><source src="../media/tile-project/force-tile-gameplay.mp4" type="video/mp4">Your browser does not support embedded video.</video><figcaption>Force Tile gameplay test demonstrating directional movement and chained traversal.</figcaption></figure><figure class="case-media"><a href="../media/tile-project/force-tile-blueprint.png" target="_blank" rel="noopener"><img src="../media/tile-project/force-tile-blueprint.png" alt="Unreal Engine Blueprint graph for the Force Tile system"></a><figcaption>Force Tile Blueprint. Click the image to view it full size.</figcaption></figure></div>
 </section>
 <section class="case-section">
     <p class="eyebrow">SYSTEM 02</p><h2>WATER TILE SYSTEM</h2><div class="section-line"></div>
@@ -48,14 +48,14 @@
     <h3>Player Interaction</h3><p>When the player enters the Water Tile, input is disabled and the Blueprint interpolates the player's position downward to create a falling effect. Once the animation completes, the player is killed and the existing death/reset behavior takes over.</p>
     <h3>Interactable Interaction</h3><p>When an interactable object such as a crate enters the Water Tile, the system replaces the Water Tile with a floor tile. This allows movable objects to change the environment and create a traversable path.</p>
     <h3>Result</h3><p>The same tile supports multiple outcomes based on the entity interacting with it, making the mechanic part of the puzzle-solving process rather than only a hazard.</p>
-    <div class="case-grid"><div class="media-placeholder">WATER TILE GAMEPLAY CLIP</div><div class="media-placeholder">WATER TILE BLUEPRINT SCREENSHOT</div></div>
+    <figure class="case-media case-media-wide"><a href="../media/tile-project/water-tile-blueprint.png" target="_blank" rel="noopener"><img src="../media/tile-project/water-tile-blueprint.png" alt="Unreal Engine Blueprint graph for the Water Tile system"></a><figcaption>Water Tile Blueprint showing separate player and interactable-object behavior. Click to view full size.</figcaption></figure>
 </section>
 <section class="case-section">
     <p class="eyebrow">SYSTEM 03</p><h2>TELEPORT TILE SYSTEM</h2><div class="section-line"></div>
     <p>I created a reusable Teleport Tile that allows entities to travel between separated areas of the TileMap without hard-coding world coordinates.</p>
     <h3>Implementation</h3><p>Each Teleport Tile contains a configurable Destination Tile reference. When an entity enters the tile, the Blueprint checks the previous tile and uses the existing entity movement system to move the entity invisibly to the assigned destination. The previous-tile check prevents the destination Teleport Tile from immediately sending the entity back.</p>
     <h3>Result</h3><p>Teleport destinations can be configured through tile references, allowing the same Blueprint to be reused across different puzzle layouts.</p>
-    <div class="case-grid"><div class="media-placeholder">TELEPORT TILE GAMEPLAY CLIP</div><div class="media-placeholder">TELEPORT TILE BLUEPRINT SCREENSHOT</div></div>
+    <div class="case-grid"><figure class="case-media"><video controls muted playsinline preload="metadata"><source src="../media/tile-project/teleport-tile-gameplay.mp4" type="video/mp4">Your browser does not support embedded video.</video><figcaption>Teleport Tile test showing travel between two separated tile areas.</figcaption></figure><figure class="case-media"><a href="../media/tile-project/teleport-tile-blueprint.png" target="_blank" rel="noopener"><img src="../media/tile-project/teleport-tile-blueprint.png" alt="Unreal Engine Blueprint graph for the Teleport Tile system"></a><figcaption>Teleport Tile Blueprint using a configurable destination reference. Click to view full size.</figcaption></figure></div>
 </section>
 <section class="case-section">
     <p class="eyebrow">SYSTEM 04</p><h2>TILE TOOLS EDITOR UTILITY</h2><div class="section-line"></div>
@@ -63,7 +63,7 @@
     <h3>Select TileMap</h3><p>The utility can locate the tiles belonging to a TileMap and select them through Unreal's Editor Actor Subsystem.</p>
     <h3>Select Row</h3><p>The row-selection tool examines tile coordinates, collects the tiles belonging to the selected row, and selects them together rather than requiring individual manual selection.</p>
     <h3>Result</h3><p>The utility reduces repetitive editor interaction and makes larger tile layouts easier to work with during development.</p>
-    <div class="case-grid"><div class="media-placeholder">TILE TOOLS EDITOR UI</div><div class="media-placeholder">TILE TOOLS BLUEPRINT SCREENSHOT</div></div>
+    <div class="case-grid"><figure class="case-media"><a href="../media/tile-project/tile-tools-ui.png" target="_blank" rel="noopener"><img src="../media/tile-project/tile-tools-ui.png" alt="Tile Tools Editor Utility Widget in Unreal Engine with Select Tilemap and Select Row buttons"></a><figcaption>Custom Tile Tools Editor Utility used during level construction.</figcaption></figure><figure class="case-media"><a href="../media/tile-project/tile-tools-blueprint.png" target="_blank" rel="noopener"><img src="../media/tile-project/tile-tools-blueprint.png" alt="Unreal Engine Blueprint graph for the Tile Tools editor utility"></a><figcaption>Editor utility Blueprint used to automate repetitive tile selection. Click to view full size.</figcaption></figure></div>
 </section>
 <section class="case-section">
     <h2>DEVELOPMENT &amp; TESTING</h2><div class="section-line"></div>
