@@ -280,3 +280,26 @@ footer {
         padding: 60px 6%;
     }
 }
+
+/* CASE STUDY */
+.project-link-muted { color: #72858c; cursor: default; }
+.case-hero { padding: 90px 8% 55px; border-bottom: 1px solid #183039; }
+.case-hero-content { max-width: 980px; }
+.case-hero h1 { font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: 1; margin: 10px 0 20px; }
+.case-lead { max-width: 850px; color: #aebbc0; font-size: 1.12rem; }
+.case-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.case-meta span { background: #10242c; border: 1px solid #1e3b45; padding: 8px 12px; border-radius: 4px; }
+.case-content { max-width: 1150px; margin: 0 auto; }
+.case-section { border-bottom: 1px solid #183039; }
+.case-section h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 12px; }
+.case-section h3 { color: #29d3c2; margin: 26px 0 8px; }
+.case-section p { color: #aebbc0; max-width: 850px; margin-bottom: 16px; }
+.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; margin-top: 28px; }
+.media-placeholder { min-height: 280px; background: #142830; border: 1px solid #1e3b45; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-align: center; color: #657a82; font-weight: bold; padding: 25px; }
+.case-callout { background: #0d1d24; border-left: 3px solid #29d3c2; padding: 22px; margin: 25px 0; }
+.case-callout p { margin: 0; }
+.contribution-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 25px; }
+.contribution-card { background: #0d1d24; border: 1px solid #183039; border-radius: 8px; padding: 24px; }
+.contribution-card h3 { margin-top: 0; }
+.case-back { margin-top: 28px; }
+@media (max-width: 700px) { .case-grid, .contribution-grid { grid-template-columns: 1fr; } .case-hero { padding: 70px 6% 45px; } }
