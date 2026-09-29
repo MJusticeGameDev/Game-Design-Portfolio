@@ -303,3 +303,31 @@ footer {
 .contribution-card h3 { margin-top: 0; }
 .case-back { margin-top: 28px; }
 @media (max-width: 700px) { .case-grid, .contribution-grid { grid-template-columns: 1fr; } .case-hero { padding: 70px 6% 45px; } }
+
+
+/* CASE STUDY MEDIA */
+.case-media {
+    margin: 28px 0 0;
+    background: #0d1d24;
+    border: 1px solid #183039;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.case-media img,
+.case-media video {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #071116;
+}
+.case-media figcaption {
+    padding: 12px 16px;
+    color: #8fa2a9;
+    font-size: 0.9rem;
+}
+.case-media-wide {
+    width: 100%;
+}
+.case-media a {
+    display: block;
+}
