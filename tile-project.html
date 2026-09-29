@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modular Tile-Based Puzzle System | Michael Justice</title>
+    <meta name="description" content="Michael Justice gameplay and technical design case study: a modular Unreal Engine 5 tile-based puzzle system built with Blueprint Visual Scripting.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+    <a href="../index.html#home" class="logo">MICHAEL JUSTICE</a>
+    <ul class="nav-links">
+        <li><a href="../index.html#work">WORK</a></li>
+        <li><a href="../index.html#about">ABOUT</a></li>
+        <li><a href="../index.html#resume">RESUME</a></li>
+        <li><a href="../index.html#contact">CONTACT</a></li>
+    </ul>
+</nav>
+<header class="case-hero">
+    <div class="case-hero-content">
+        <p class="eyebrow">GAMEPLAY &amp; TECHNICAL DESIGN CASE STUDY</p>
+        <h1>MODULAR TILE-BASED<br>PUZZLE SYSTEM</h1>
+        <p class="case-lead">A tile-based puzzle project built in Unreal Engine 5. Starting from a course-provided tile framework, I extended the existing architecture with new gameplay mechanics, reusable tile behaviors, and custom editor tools.</p>
+        <div class="case-meta"><span>Unreal Engine 5</span><span>Blueprint Visual Scripting</span><span>Gameplay Systems</span><span>Editor Tools</span></div>
+        <div class="buttons case-back"><a href="../index.html#work" class="button button-secondary">← BACK TO PROJECTS</a></div>
+    </div>
+</header>
+<main class="case-content">
+<section class="case-section">
+    <h2>PROJECT OVERVIEW</h2><div class="section-line"></div>
+    <p>This project began with a course-provided tile-based framework that included the core TileMap, player and entity systems, interactable objects, and several basic tile types.</p>
+    <p>Rather than rebuilding the existing framework, I focused on learning how its systems communicated and extending it with additional mechanics. My goal was to create reusable gameplay systems that could interact with both the player and other entities while fitting into the architecture already in place.</p>
+    <div class="case-callout"><p><strong>Role:</strong> Gameplay / Technical Designer &nbsp; • &nbsp; <strong>Focus:</strong> Gameplay systems, interaction logic, editor tooling, testing, and debugging.</p></div>
+    <div class="media-placeholder">HERO GAMEPLAY VIDEO / FINISHED PUZZLE SCREENSHOT</div>
+</section>
+<section class="case-section">
+    <p class="eyebrow">SYSTEM 01</p><h2>FORCE TILE SYSTEM</h2><div class="section-line"></div>
+    <p>The Force Tile automatically moves an entity in a specified direction when it enters the tile. I designed it to work with both the player and interactable entities while supporting chains of consecutive Force Tiles.</p>
+    <h3>Problem</h3><p>A single forced movement was straightforward, but consecutive Force Tiles needed to continue moving an entity automatically without requiring every sequence to be scripted individually.</p>
+    <h3>Implementation</h3><p>I created a reusable Force Move Entity event that determines the neighboring tile based on the Force Tile's direction and moves the entity to that tile. After movement completes, the system checks the entity's current tile. If it is another Force Tile, the next tile triggers the same movement logic again. Player input is disabled during forced movement and restored after reaching a normal tile.</p>
+    <h3>Result</h3><p>Designers can create short pushes or longer automated movement paths simply by arranging Force Tiles in the level.</p>
+    <div class="case-grid"><div class="media-placeholder">FORCE TILE GAMEPLAY CLIP</div><div class="media-placeholder">FORCE TILE BLUEPRINT SCREENSHOT</div></div>
+</section>
+<section class="case-section">
+    <p class="eyebrow">SYSTEM 02</p><h2>WATER TILE SYSTEM</h2><div class="section-line"></div>
+    <p>The Water Tile reacts differently depending on the type of entity entering it, turning a basic hazard into a puzzle mechanic.</p>
+    <h3>Player Interaction</h3><p>When the player enters the Water Tile, input is disabled and the Blueprint interpolates the player's position downward to create a falling effect. Once the animation completes, the player is killed and the existing death/reset behavior takes over.</p>
+    <h3>Interactable Interaction</h3><p>When an interactable object such as a crate enters the Water Tile, the system replaces the Water Tile with a floor tile. This allows movable objects to change the environment and create a traversable path.</p>
+    <h3>Result</h3><p>The same tile supports multiple outcomes based on the entity interacting with it, making the mechanic part of the puzzle-solving process rather than only a hazard.</p>
+    <div class="case-grid"><div class="media-placeholder">WATER TILE GAMEPLAY CLIP</div><div class="media-placeholder">WATER TILE BLUEPRINT SCREENSHOT</div></div>
+</section>
+<section class="case-section">
+    <p class="eyebrow">SYSTEM 03</p><h2>TELEPORT TILE SYSTEM</h2><div class="section-line"></div>
+    <p>I created a reusable Teleport Tile that allows entities to travel between separated areas of the TileMap without hard-coding world coordinates.</p>
+    <h3>Implementation</h3><p>Each Teleport Tile contains a configurable Destination Tile reference. When an entity enters the tile, the Blueprint checks the previous tile and uses the existing entity movement system to move the entity invisibly to the assigned destination. The previous-tile check prevents the destination Teleport Tile from immediately sending the entity back.</p>
+    <h3>Result</h3><p>Teleport destinations can be configured through tile references, allowing the same Blueprint to be reused across different puzzle layouts.</p>
+    <div class="case-grid"><div class="media-placeholder">TELEPORT TILE GAMEPLAY CLIP</div><div class="media-placeholder">TELEPORT TILE BLUEPRINT SCREENSHOT</div></div>
+</section>
+<section class="case-section">
+    <p class="eyebrow">SYSTEM 04</p><h2>TILE TOOLS EDITOR UTILITY</h2><div class="section-line"></div>
+    <p>While constructing levels, selecting large groups of individual tiles became repetitive. I created an editor utility to reduce that manual work.</p>
+    <h3>Select TileMap</h3><p>The utility can locate the tiles belonging to a TileMap and select them through Unreal's Editor Actor Subsystem.</p>
+    <h3>Select Row</h3><p>The row-selection tool examines tile coordinates, collects the tiles belonging to the selected row, and selects them together rather than requiring individual manual selection.</p>
+    <h3>Result</h3><p>The utility reduces repetitive editor interaction and makes larger tile layouts easier to work with during development.</p>
+    <div class="case-grid"><div class="media-placeholder">TILE TOOLS EDITOR UI</div><div class="media-placeholder">TILE TOOLS BLUEPRINT SCREENSHOT</div></div>
+</section>
+<section class="case-section">
+    <h2>DEVELOPMENT &amp; TESTING</h2><div class="section-line"></div>
+    <p>I used dedicated test maps while developing mechanics rather than relying entirely on the finished puzzle level. The Force Tile system was tested across multiple focused maps while I worked through chained movement behavior, and the Teleport Tile had its own test environment before integration.</p>
+    <p>This let me isolate, test, and debug individual systems before combining them into larger puzzle layouts.</p>
+</section>
+<section class="case-section">
+    <h2>WHAT I LEARNED</h2><div class="section-line"></div>
+    <p>One of the biggest lessons from this project was learning how to work within an existing Blueprint architecture instead of building every system from scratch. I had to understand how the provided tiles, entities, TileMap, player, and interactable systems communicated before I could extend them successfully.</p>
+    <p>Creating the Tile Tools utility also changed how I approached development workflow. Instead of accepting a repetitive editor task, I identified the problem and built a tool to make the process more efficient.</p>
+</section>
+<section class="case-section">
+    <h2>CONTRIBUTION BREAKDOWN</h2><div class="section-line"></div>
+    <div class="contribution-grid">
+        <div class="contribution-card"><h3>Course-Provided Foundation</h3><p>Core tile framework, TileMap system, player/entity framework, interactable framework, base UI/art assets, and basic tile types.</p></div>
+        <div class="contribution-card"><h3>My Contributions</h3><p>Force Tile system and chained movement behavior, Water Tile system and entity-dependent interactions, Teleport Tile system, Tile Tools editor utility, Force Tile visual/material, test maps, puzzle-level implementation, and modifications/extensions to existing tile behaviors.</p></div>
+    </div>
+    <div class="buttons case-back"><a href="../index.html#work" class="button button-primary">BACK TO FEATURED PROJECTS</a></div>
+</section>
+</main>
+<footer><p>© 2026 Michael Justice • Game Design Portfolio</p></footer>
+</body>
+</html>
