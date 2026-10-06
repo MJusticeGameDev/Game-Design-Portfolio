@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroids Arcade Prototype | Michael Justice</title>
+    <meta name="description" content="Michael Justice gameplay systems case study: an Asteroids-inspired Unreal Engine 5 arcade prototype developed with Blueprint Visual Scripting.">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+    <a href="../index.html#home" class="logo">MICHAEL JUSTICE</a>
+    <ul class="nav-links">
+        <li><a href="../index.html#work">WORK</a></li>
+        <li><a href="../index.html#about">ABOUT</a></li>
+        <li><a href="../index.html#resume">RESUME</a></li>
+        <li><a href="../index.html#contact">CONTACT</a></li>
+    </ul>
+</nav>
+<header class="case-hero">
+    <div class="case-hero-content">
+        <p class="eyebrow">GAMEPLAY SYSTEMS CASE STUDY</p>
+        <h1>ASTEROIDS ARCADE<br>PROTOTYPE</h1>
+        <p class="case-lead">An Asteroids-inspired arcade prototype developed in Unreal Engine 5 using a course-provided foundation that I extended with interconnected gameplay systems including wave progression, randomized spawning, asteroid splitting, scoring, player lives, respawning, countdowns, and game-state management.</p>
+        <div class="case-meta"><span>Unreal Engine 5</span><span>Blueprint Visual Scripting</span><span>Gameplay Systems</span><span>UI / Game State</span></div>
+        <div class="buttons case-back"><a href="../index.html#work" class="button button-secondary">← BACK TO PROJECTS</a></div>
+    </div>
+</header>
+<main class="case-content">
+<section class="case-section">
+    <h2>PROJECT OVERVIEW</h2><div class="section-line"></div>
+    <p>This project uses a course-provided Asteroids-style framework as its foundation. My work focused on implementing and connecting the gameplay logic needed to turn that foundation into a complete arcade loop.</p>
+    <p>The finished prototype tracks score, lives, and wave progression; spawns asteroids from randomized screen edges; breaks larger asteroids into smaller targets; transitions between waves with a countdown; handles player death and respawning; and supports pause, restart, and game-over states.</p>
+    <div class="case-callout"><p><strong>Role:</strong> Gameplay / Technical Designer &nbsp; • &nbsp; <strong>Focus:</strong> Blueprint gameplay logic, spawning, progression, player lifecycle, UI, testing, and debugging.</p></div>
+    <figure class="case-media case-media-wide"><img src="../media/asteroids/hero-gameplay.png" alt="Asteroids arcade prototype gameplay during wave three with multiple asteroid sizes"><figcaption>Gameplay during Wave 3, showing multiple asteroid sizes alongside the live score, wave, and lives HUD.</figcaption></figure>
+</section>
+<section class="case-section">
+    <p class="eyebrow">SYSTEM 01</p><h2>WAVE SPAWNING &amp; PROGRESSION</h2><div class="section-line"></div>
+    <p>The wave system controls how many large asteroids enter play and where they appear. The current wave value determines the number of initial asteroids spawned, allowing the challenge to increase as the player progresses.</p>
+    <h3>Randomized Screen-Edge Spawning</h3><p>For each asteroid in a wave, the spawner selects a random screen edge from Top, Bottom, Left, or Right. That screen-space location is converted to a world position before a large asteroid is spawned, keeping new targets around the perimeter rather than appearing directly on the player.</p>
+    <h3>Wave Transition</h3><p>When the asteroid population reaches zero, the system creates a countdown widget and listens for the countdown-finished event. Once the countdown completes, the current wave is incremented and the next wave is spawned.</p>
+    <h3>Result</h3><p>The player moves through a repeating arcade loop of clearing a wave, receiving a short transition period, and facing a larger incoming wave.</p>
+    <div class="case-grid"><figure class="case-media"><a href="../media/asteroids/spawn-wave-blueprint.png" target="_blank" rel="noopener"><img src="../media/asteroids/spawn-wave-blueprint.png" alt="Blueprint showing Asteroids wave spawning and randomized screen-edge selection"></a><figcaption>Wave spawning logic. Click to view the Blueprint full size.</figcaption></figure><figure class="case-media"><img src="../media/asteroids/countdown.png" alt="Large countdown number displayed between Asteroids waves"><figcaption>A countdown gives the player a short break before the next wave begins.</figcaption></figure></div>
+</section>
+<section class="case-section">
+    <p class="eyebrow">SYSTEM 02</p><h2>ASTEROID SPLITTING &amp; SCORING</h2><div class="section-line"></div>
+    <p>Asteroids are categorized as Large, Medium, or Small. Their type determines what happens when they are destroyed and allows one target to become a sequence of smaller threats.</p>
+    <h3>Break-Apart Logic</h3><p>The spawner checks the destroyed asteroid's type and uses its destruction location for the replacement targets. A Large asteroid produces two Medium asteroids, while a Medium asteroid produces three Small asteroids. Small asteroids end the split chain.</p>
+    <h3>Scoring</h3><p>The asteroid Blueprint assigns values based on asteroid type and communicates destruction information back to the gameplay systems so the score can be updated while the spawner handles the next stage of the asteroid.</p>
+    <h3>Result</h3><p>Destroying a large target changes the encounter instead of simply removing an enemy, creating a layered risk/reward loop and keeping the active target count dynamic.</p>
+    <div class="case-grid"><figure class="case-media"><a href="../media/asteroids/break-apart-blueprint.png" target="_blank" rel="noopener"><img src="../media/asteroids/break-apart-blueprint.png" alt="Blueprint showing Large and Medium asteroid splitting logic"></a><figcaption>Break-apart logic for Large, Medium, and Small asteroid types. Click to view full size.</figcaption></figure><figure class="case-media"><img src="../media/asteroids/hud-tracker.png" alt="Asteroids HUD displaying score, current wave, and lives"><figcaption>The HUD exposes the core progression state: score, current wave, and remaining lives.</figcaption></figure></div>
+</section>
+<section class="case-section">
+    <p class="eyebrow">SYSTEM 03</p><h2>PLAYER LIFE &amp; RESPAWN SYSTEM</h2><div class="section-line"></div>
+    <p>Player death is handled as a gameplay state rather than an immediate full restart. The system removes a life, checks whether any lives remain, and either respawns the player or moves into the game-over flow.</p>
+    <h3>Respawn Flow</h3><p>When lives remain, the player is reset to the center of the screen, health is restored, and movement is temporarily disabled. After respawning, the player receives a short period of invulnerability before normal play resumes.</p>
+    <h3>Game Over</h3><p>If the player has no remaining lives, the system creates the Game Over UI and routes the restart through the game mode rather than continuing the normal respawn path.</p>
+    <h3>Result</h3><p>The player gets a clear arcade-style life cycle: death, life reduction, protected respawn, return to play, and eventually game over when the life pool is exhausted.</p>
+    <div class="case-grid"><figure class="case-media"><video controls muted playsinline preload="metadata"><source src="../media/asteroids/player-death-respawn.mp4" type="video/mp4">Your browser does not support embedded video.</video><figcaption>Gameplay capture showing the player losing a life and the ship-reset behavior.</figcaption></figure><figure class="case-media"><a href="../media/asteroids/player-lifecycle-blueprint.png" target="_blank" rel="noopener"><img src="../media/asteroids/player-lifecycle-blueprint.png" alt="Blueprint showing player death, lives, respawn, invulnerability, and game-over logic"></a><figcaption>Player lifecycle Blueprint covering death, lives, respawn, temporary invulnerability, and game over. Click to view full size.</figcaption></figure></div>
+    <figure class="case-media case-media-wide"><a href="../media/asteroids/player-reset-blueprint.png" target="_blank" rel="noopener"><img src="../media/asteroids/player-reset-blueprint.png" alt="Blueprint showing the player reset sequence"></a><figcaption>The reset sequence stops movement, returns the ship to the center, restores health, then re-enables movement after a short delay.</figcaption></figure>
+</section>
+<section class="case-section">
+    <p class="eyebrow">SYSTEM 04</p><h2>GAME STATE &amp; UI</h2><div class="section-line"></div>
+    <p>The prototype includes the supporting states needed to make the gameplay loop usable from start to finish: an initial start state, HUD feedback, wave countdowns, pause/resume controls, restart behavior, and game over.</p>
+    <p>The HUD continuously communicates the three values most important to the arcade loop—score, current wave, and lives—while the pause menu gives the player explicit Resume and Restart Game options.</p>
+    <div class="case-grid"><figure class="case-media"><img src="../media/asteroids/pause-menu.png" alt="Asteroids pause menu with Resume and Restart Game buttons"><figcaption>Pause state with Resume and Restart Game controls.</figcaption></figure><figure class="case-media"><img src="../media/asteroids/countdown.png" alt="Asteroids wave countdown"><figcaption>Wave-transition countdown used before spawning the next wave.</figcaption></figure></div>
+</section>
+<section class="case-section">
+    <h2>DEVELOPMENT &amp; DEBUGGING</h2><div class="section-line"></div>
+    <p>This project required multiple Blueprints to communicate across the full gameplay loop. The spawner needed to know when asteroids were destroyed, the asteroid logic needed to communicate type and destruction information, the player system needed to manage death and respawning, and the UI needed to reflect changing gameplay state.</p>
+    <p>Breaking the logic into focused Blueprint sections and using comments helped me test individual behaviors while still understanding how they connected to the complete game loop.</p>
+</section>
+<section class="case-section">
+    <h2>WHAT I LEARNED</h2><div class="section-line"></div>
+    <p>This project helped me move from thinking about mechanics individually to thinking about how gameplay systems depend on one another. Spawning, destruction, scoring, waves, lives, respawning, countdowns, and UI all had to stay synchronized for the prototype to feel complete.</p>
+    <p>It also gave me more experience extending an existing Unreal project rather than treating every feature as an isolated Blueprint. That experience carried into later projects where I built more reusable and modular systems.</p>
+</section>
+<section class="case-section">
+    <h2>CONTRIBUTION BREAKDOWN</h2><div class="section-line"></div>
+    <div class="contribution-grid">
+        <div class="contribution-card"><h3>Course-Provided Foundation</h3><p>Starter Asteroids-style project structure and underlying framework/assets used as the base for the assignment.</p></div>
+        <div class="contribution-card"><h3>My Implementation</h3><p>Gameplay logic connecting wave spawning and progression, randomized screen-edge spawning, asteroid splitting behavior, score/life progression, player death and respawn flow, countdown transitions, pause/restart behavior, and supporting UI/game-state functionality shown in this case study.</p></div>
+    </div>
+    <div class="buttons case-back"><a href="../index.html#work" class="button button-primary">BACK TO FEATURED PROJECTS</a></div>
+</section>
+</main>
+<footer><p>© 2026 Michael Justice • Game Design Portfolio</p></footer>
+</body>
+</html>
