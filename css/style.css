@@ -240,18 +240,6 @@ section {
     border-radius: 4px;
 }
 
-/* CONTACT */
-
-.contact {
-    text-align: center;
-}
-
-.contact p {
-    color: #aebbc0;
-    margin: 15px auto 30px;
-    max-width: 600px;
-}
-
 /* FOOTER */
 
 footer {
@@ -349,52 +337,127 @@ footer {
     display: block;
 }
 
+/* =================================
+   CONTACT SECTION - FINAL DESIGN
+================================= */
+
+/* Center the entire contact section */
+#contact,
+.contact,
 .contact-section {
-  text-align: center;
+    text-align: center;
 }
 
-.contact-description {
-  max-width: 680px;
-  margin: 24px auto 18px;
-  line-height: 1.7;
-  color: #b8c8d0;
+/* Center the heading */
+#contact .section-title,
+.contact .section-title,
+.contact-section .section-title {
+    text-align: center;
+    margin-bottom: 14px;
 }
 
-.contact-email {
-  display: inline-block;
-  margin-bottom: 28px;
-  color: #24cbbb;
-  font-size: 1rem;
-  font-weight: 500;
-  text-decoration: none;
-  overflow-wrap: anywhere;
+/* Center the teal underline */
+#contact .section-line,
+.contact .section-line,
+.contact-section .section-line {
+    margin: 0 auto 35px;
 }
 
-.contact-email:hover {
-  text-decoration: underline;
+/* Description text */
+#contact .contact-description,
+.contact .contact-description,
+.contact-section .contact-description {
+    max-width: 720px;
+    margin: 0 auto 28px;
+    color: #b8c8d0;
+    font-size: 1.08rem;
+    line-height: 1.8;
+    text-align: center;
 }
 
-.contact-actions {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
+/* Professional email address */
+#contact .contact-email,
+.contact .contact-email,
+.contact-section .contact-email {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 32px;
+    color: #29d3c2;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: color 0.2s ease;
 }
 
-.contact-actions .button {
-  min-width: 165px;
-  box-sizing: border-box;
-  text-align: center;
+#contact .contact-email:hover,
+.contact .contact-email:hover,
+.contact-section .contact-email:hover {
+    color: #ffffff;
+    text-decoration: underline;
 }
 
-@media (max-width: 600px) {
-  .contact-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .contact-actions .button {
+/* Button row */
+#contact .contact-actions,
+.contact .contact-actions,
+.contact-section .contact-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
     width: 100%;
-  }
+    margin: 0 auto;
+}
+
+/* Consistent button sizing */
+#contact .contact-actions .button,
+.contact .contact-actions .button,
+.contact-section .contact-actions .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    min-height: 56px;
+    padding: 14px 24px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+
+    #contact .contact-description,
+    .contact .contact-description,
+    .contact-section .contact-description {
+        font-size: 1rem;
+        margin-bottom: 24px;
+    }
+
+    #contact .contact-email,
+    .contact .contact-email,
+    .contact-section .contact-email {
+        font-size: 0.95rem;
+        margin-bottom: 28px;
+    }
+
+    #contact .contact-actions,
+    .contact .contact-actions,
+    .contact-section .contact-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    #contact .contact-actions .button,
+    .contact .contact-actions .button,
+    .contact-section .contact-actions .button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+
 }
 
